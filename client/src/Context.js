@@ -103,6 +103,18 @@ const ContextProvider = ({ children }) => {
     });
   };
 
+  const [chatMessages, setChatMessages] = useState([]); // State to store chat messages
+
+  useEffect(() => {
+    socket.on('chatMessage', (message) => {
+      setChatMessages((prevMessages) => [...prevMessages, message]);
+    });
+  }, []);
+
+  const sendChatMessage = (message) => {
+    socket.emit('chatMessage', { text: message, name }); // Emit chatMessage event
+  };
+
   // Return the SocketContext.Provider with state and functions as values
   return (
     <SocketContext.Provider value={{
@@ -120,6 +132,8 @@ const ContextProvider = ({ children }) => {
       answerCall,
       toggleAudio, // Add toggleAudio to the value object
       toggleVideo,
+      chatMessages,
+      sendChatMessage,
     }}
     >
       {children}

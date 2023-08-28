@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Grid, Typography, Paper, makeStyles, Button } from '@material-ui/core';
 
 import { SocketContext } from '../Context';
+import ChatPage from './ChatPage'; // Import the ChatPage component
 
 const useStyles = makeStyles((theme) => ({
   video: {
@@ -11,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   gridContainer: {
-    width: '600px',
+    width: '650px',
     justifyContent: 'center',
     [theme.breakpoints.down('xs')]: {
       flexDirection: 'column',
@@ -57,6 +58,9 @@ const VideoPlayer = () => {
           </Grid>
         </Paper>
       )}
+      <Paper className={classes.paper}>
+        <ChatPage /> {/* Display ChatPage when showChat is true */}
+      </Paper>
     </Grid>
   );
 };

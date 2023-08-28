@@ -10,7 +10,7 @@ const io = require("socket.io")(server, {
 });
 
 app.use(cors()); // Use CORS middleware for enabling cross-origin requests
- 
+
 const PORT = process.env.PORT || 5000; // Define the port for the server to listen on
 
 // Define a simple route to check if the server is running
@@ -38,6 +38,10 @@ io.on("connection", (socket) => {
 	socket.on("answerCall", (data) => {
 		// Emit the "callAccepted" event to the caller, passing the signal data
 		io.to(data.to).emit("callAccepted", data.signal);
+	});
+
+	socket.on('chatMessage', (data) => {
+		io.emit('chatMessage', { ...data, id: `${socket.id}${Math.random()}` }); // Broadcast chat message
 	});
 });
 
