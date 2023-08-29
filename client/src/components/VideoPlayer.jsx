@@ -2,7 +2,6 @@ import React, { useContext, useState } from 'react';
 import { Grid, Typography, Paper, makeStyles, Button } from '@material-ui/core';
 
 import { SocketContext } from '../Context';
-import ChatPage from './ChatPage'; // Import the ChatPage component
 
 const useStyles = makeStyles((theme) => ({
   video: {
@@ -58,9 +57,6 @@ const VideoPlayer = () => {
           </Grid>
         </Paper>
       )}
-      <Paper className={classes.paper}>
-        <ChatPage /> {/* Display ChatPage when showChat is true */}
-      </Paper>
     </Grid>
   );
 };

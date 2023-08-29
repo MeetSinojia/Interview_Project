@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect, useRef } from 'react';
 import { Button, TextField } from '@material-ui/core';
 import { SocketContext } from '../Context';
+import './ChatPage.css'; // Import the custom CSS file
 
 const ChatPage = () => {
   const { chatMessages, sendChatMessage } = useContext(SocketContext);
@@ -19,11 +20,11 @@ const ChatPage = () => {
   };
 
   return (
-    <div>
+    <div className="chat-container">
       <h2>Chat</h2>
-      <div className="chat-container">
+      <div className="message-container">
         {chatMessages.map((msg, index) => (
-          <div key={index}>{msg.name}: {msg.text}</div>
+          <div key={index} className="message">{msg.name}: {msg.text}</div>
         ))}
         <div ref={chatEndRef} /> {/* Scroll to the latest message */}
       </div>

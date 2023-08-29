@@ -1,10 +1,12 @@
 import React from 'react';
-import { Typography, AppBar } from '@material-ui/core';
+import { Typography, AppBar, Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 import VideoPlayer from './components/VideoPlayer';
 import Sidebar from './components/Sidebar';
 import Notifications from './components/Notifications';
+import ChatPage from './components/ChatPage'; // Import the ChatPage component
+import './styles.css';
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -30,6 +32,15 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     width: '100%',
   },
+  paper: {
+    padding: '10px',
+    border: '2px solid black',
+    margin: '10px', // Adjust the margin values as needed
+    marginLeft: '1500px', // Add margin-left to the paper style
+  },
+  button: {
+    margin: theme.spacing(1),
+  },
 }));
 
 const App = () => {
@@ -41,6 +52,9 @@ const App = () => {
         <Typography variant="h2" align="center">Video Chat</Typography>
       </AppBar>
       <VideoPlayer />
+      <Paper className={classes.paper}>
+        <ChatPage /> {/* Display ChatPage when showChat is true */}
+      </Paper>
       <Sidebar>
         <Notifications />
       </Sidebar>
