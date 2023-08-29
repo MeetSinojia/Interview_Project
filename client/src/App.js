@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    width: '600px',
+    width: '500px',
     border: '2px solid black',
 
     [theme.breakpoints.down('xs')]: {
@@ -36,28 +36,43 @@ const useStyles = makeStyles((theme) => ({
     padding: '10px',
     border: '2px solid black',
     margin: '10px', // Adjust the margin values as needed
-    marginLeft: '1500px', // Add margin-left to the paper style
   },
   button: {
     margin: theme.spacing(1),
+  },
+  contentContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'flex-start', // Align items at the top
+  },
+  chatContainer: {
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center', // Center items vertically
+    alignItems: 'center', // Center items horizontally
+    marginLeft: '20px',
   },
 }));
 
 const App = () => {
   const classes = useStyles();
-
   return (
     <div className={classes.wrapper}>
       <AppBar className={classes.appBar} position="static" color="inherit">
         <Typography variant="h2" align="center">Video Chat</Typography>
       </AppBar>
-      <VideoPlayer />
-      <Paper className={classes.paper}>
-        <ChatPage /> {/* Display ChatPage when showChat is true */}
-      </Paper>
-      <Sidebar>
-        <Notifications />
-      </Sidebar>
+      <div className={classes.contentContainer}>
+        <VideoPlayer />
+        <div className={classes.chatContainer}>
+          <Paper className={classes.paper}>
+            <ChatPage />
+          </Paper>
+          <Sidebar>
+            <Notifications />
+          </Sidebar>
+        </div>
+      </div>
     </div>
   );
 };

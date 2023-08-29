@@ -6,6 +6,7 @@ import { SocketContext } from '../Context';
 const useStyles = makeStyles((theme) => ({
   video: {
     width: '550px',
+    marginLeft: '20px',
     [theme.breakpoints.down('xs')]: {
       width: '300px',
     },
@@ -25,6 +26,9 @@ const useStyles = makeStyles((theme) => ({
   button: {
     margin: theme.spacing(1),
   },
+  names: {
+    marginLeft: '250px',
+  },
 }));
 
 const VideoPlayer = () => {
@@ -38,7 +42,7 @@ const VideoPlayer = () => {
       {stream && (
         <Paper className={classes.paper}>
           <Grid item xs={12} md={6}>
-            <Typography variant="h5" gutterBottom>{name || 'Name'}</Typography>
+            <Typography className={classes.names} variant="h5" gutterBottom>{name || 'Name'}</Typography>
             <video playsInline muted ref={myVideo} autoPlay className={classes.video} />
             <Button variant="contained" color="primary" onClick={() => { toggleAudio(isMuted); setIsMuted(!isMuted); }} className={classes.button}>
               {isMuted ? 'Mute' : 'UnMute'}
@@ -52,7 +56,7 @@ const VideoPlayer = () => {
       {callAccepted && !callEnded && (
         <Paper className={classes.paper}>
           <Grid item xs={12} md={6}>
-            <Typography variant="h5" gutterBottom>{call.name || 'Name'}</Typography>
+            <Typography className={classes.names} variant="h5" gutterBottom>{call.name || 'Name'}</Typography>
             <video playsInline ref={userVideo} autoPlay className={classes.video} />
           </Grid>
         </Paper>
